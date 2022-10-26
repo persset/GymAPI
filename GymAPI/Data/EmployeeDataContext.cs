@@ -9,6 +9,6 @@ namespace GymAPI.Data
         {
         }
 
-        public DbSet<Employee> Employees => Set<Employee>();
+        public DbSet<Employee>? Employees { get; set; }
     }
 }
