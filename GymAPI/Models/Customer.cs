@@ -1,5 +1,9 @@
 ﻿namespace GymAPI.Models {
     public class Customer {
+        public Customer() {
+            this.Routines = new HashSet<Routine>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
