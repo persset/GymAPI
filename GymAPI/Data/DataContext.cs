@@ -9,6 +9,7 @@ namespace GymAPI.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<UserType> UserTypes => Set<UserType>();
+        public DbSet<UserPrivilege> UserPrivileges => Set<UserPrivilege>();
     }
 
 }
