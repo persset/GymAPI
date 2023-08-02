@@ -1,4 +1,5 @@
 ﻿
+using GymAPI.Migrations;
 using GymAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
