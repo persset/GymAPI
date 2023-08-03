@@ -13,6 +13,7 @@ namespace GymAPI.Data
         public DbSet<UserPrivilege> UserPrivileges => Set<UserPrivilege>();
         public DbSet<User> Users => Set<User>();
         public DbSet<PlanPeriodicity> PlanPeriodicities => Set<PlanPeriodicity>();
+        public DbSet<Plan> Plans => Set<Plan>();
     }
 
 }
