@@ -14,6 +14,7 @@ namespace GymAPI.Data
         public DbSet<User> Users => Set<User>();
         public DbSet<PlanPeriodicity> PlanPeriodicities => Set<PlanPeriodicity>();
         public DbSet<Plan> Plans => Set<Plan>();
+        public DbSet<MuscleGroup> MuscleGroups => Set<MuscleGroup>();
     }
 
 }
