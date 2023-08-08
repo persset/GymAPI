@@ -31,7 +31,7 @@ namespace GymAPI.Migrations
                         column: x => x.TrainingDesignerId,
                         principalTable: "Functionaries",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
