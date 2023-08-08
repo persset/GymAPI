@@ -9,6 +9,11 @@ namespace GymAPI.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Training>().HasMany(e => e.Exercises).WithMany(e => e.Trainings).UsingEntity<TrainingExercises>();
+        }
+
         public DbSet<UserType> UserTypes => Set<UserType>();
         public DbSet<UserPrivilege> UserPrivileges => Set<UserPrivilege>();
         public DbSet<User> Users => Set<User>();
