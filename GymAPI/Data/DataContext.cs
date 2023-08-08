@@ -17,6 +17,7 @@ namespace GymAPI.Data
         public DbSet<MuscleGroup> MuscleGroups => Set<MuscleGroup>();
         public DbSet<Exercise> Exercises => Set<Exercise>();
         public DbSet<Client> Clients => Set<Client>();
+        public DbSet<Functionary> Functionaries => Set<Functionary>();
     }
 
 }
