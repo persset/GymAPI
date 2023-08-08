@@ -1,10 +1,13 @@
 using GymAPI.Data;
+using GymAPI.Services.User;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+#region Services
+builder.Services.AddScoped<IUserService, UserService>();
+#endregion
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
