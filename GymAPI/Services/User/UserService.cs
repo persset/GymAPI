@@ -51,9 +51,7 @@ public class UserService : IUserService
 
         if(user is null) return null;
 
-        user.Username = item.Username;
-        user.Password = item.Password;
-        user.UserType = item.UserType;
+        dataContext.Entry(user).CurrentValues.SetValues(item);
 
         await dataContext.SaveChangesAsync();
 

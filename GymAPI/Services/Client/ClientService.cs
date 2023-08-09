@@ -53,10 +53,7 @@ public class ClientService : IClientService
 
         if(client is null) return null;
 
-        client.Name = item.Name;
-        client.Phone = item.Phone;
-        client.Plan = item.Plan;
-        client.SubscriptionDeadline = item.SubscriptionDeadline;
+        dataContext.Entry(client).CurrentValues.SetValues(item);
 
         await dataContext.SaveChangesAsync();
 

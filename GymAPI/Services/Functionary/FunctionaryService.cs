@@ -52,9 +52,7 @@ public class FunctionaryService : IFunctionaryService
 
         if(functionary is null) return null;
 
-        functionary.Name = item.Name;
-        functionary.User = item.User;
-        functionary.Phone = item.Phone;
+        dataContext.Entry(functionary).CurrentValues.SetValues(item);
 
         await dataContext.SaveChangesAsync();
 

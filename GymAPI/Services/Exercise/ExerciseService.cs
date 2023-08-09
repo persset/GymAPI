@@ -52,11 +52,7 @@ public class ExerciseSevice : IExerciseService
 
         if(exercise is null) return null;
 
-        exercise.Name = item.Name;
-        exercise.Description = item.Description;
-        exercise.MuscleGroup = item.MuscleGroup;
-        exercise.ExampleImageURI = item.ExampleImageURI;
-        exercise.ExampleVideoURI = item.ExampleVideoURI;
+        dataContext.Entry(exercise).CurrentValues.SetValues(item);
 
         await dataContext.SaveChangesAsync();
 
