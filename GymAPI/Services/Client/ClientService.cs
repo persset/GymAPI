@@ -26,6 +26,10 @@ public class ClientService : IClientService
 
         if(client is null) return null;
 
+        dataContext.Clients.Remove(client);
+
+        await dataContext.SaveChangesAsync();
+
         return client;
     }
 
@@ -50,7 +54,6 @@ public class ClientService : IClientService
         if(client is null) return null;
 
         client.Name = item.Name;
-        client.User = item.User;
         client.Phone = item.Phone;
         client.Plan = item.Plan;
         client.SubscriptionDeadline = item.SubscriptionDeadline;
