@@ -7,7 +7,8 @@ public class UserService : IUserService
 {
     private readonly DataContext dataContext;
 
-    public UserService(DataContext dataContext) {
+    public UserService(DataContext dataContext)
+    {
         this.dataContext = dataContext;
     }
     public async Task<Models.User> Create(Models.User item)
@@ -23,7 +24,7 @@ public class UserService : IUserService
     {
         var user = await dataContext.Users.FindAsync(id);
 
-        if(user is null) return null;
+        if (user is null) return null;
 
         dataContext.Users.Remove(user);
         await dataContext.SaveChangesAsync();
@@ -40,7 +41,7 @@ public class UserService : IUserService
     {
         var user = await dataContext.Users.FindAsync(id);
 
-        if(user is null) return null;
+        if (user is null) return null;
 
         return user;
     }
@@ -49,9 +50,11 @@ public class UserService : IUserService
     {
         var user = await dataContext.Users.FindAsync(id);
 
-        if(user is null) return null;
+        if (user is null) return null;
 
-        dataContext.Entry(user).CurrentValues.SetValues(item);
+        user.Username = item.Username;
+        user.Password = item.Password;
+        user.UserType = item.UserType;
 
         await dataContext.SaveChangesAsync();
 

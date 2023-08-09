@@ -7,7 +7,8 @@ public class PlanService : IPlanService
 {
     private readonly DataContext dataContext;
 
-    public PlanService(DataContext dataContext) {
+    public PlanService(DataContext dataContext)
+    {
         this.dataContext = dataContext;
     }
     public async Task<Models.Plan> Create(Models.Plan item)
@@ -23,7 +24,7 @@ public class PlanService : IPlanService
     {
         var plan = await dataContext.Plans.FindAsync(id);
 
-        if(plan is null) return null;
+        if (plan is null) return null;
 
         dataContext.Plans.Remove(plan);
 
@@ -41,7 +42,7 @@ public class PlanService : IPlanService
     {
         var plan = await dataContext.Plans.FindAsync(id);
 
-        if(plan is null) return null;
+        if (plan is null) return null;
 
         return plan;
     }
@@ -50,9 +51,10 @@ public class PlanService : IPlanService
     {
         var plan = await dataContext.Plans.FindAsync(id);
 
-        if(plan is null) return null;
+        if (plan is null) return null;
 
-        dataContext.Entry(plan).CurrentValues.SetValues(item);
+        plan.Name = item.Name;
+        plan.Value = item.Value;
 
         await dataContext.SaveChangesAsync();
 

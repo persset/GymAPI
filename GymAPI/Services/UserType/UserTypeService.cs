@@ -57,7 +57,8 @@ public class UserTypeService : IUserTypeService
         if (userType == null)
             return null;
 
-        dataContext.Entry(userType).CurrentValues.SetValues(item);
+        userType.Name = item.Name;
+        userType.Privileges = item.Privileges;
 
         await dataContext.SaveChangesAsync();
 

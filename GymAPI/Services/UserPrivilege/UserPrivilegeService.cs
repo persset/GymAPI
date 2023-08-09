@@ -57,7 +57,7 @@ public class UserPrivilegeService : IUserPrivilegeService
         if (privilege == null)
             return null;
 
-        dataContext.Entry(privilege).CurrentValues.SetValues(item);
+        privilege.Name = item.Name;
 
         await dataContext.SaveChangesAsync();
 

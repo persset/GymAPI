@@ -1,6 +1,6 @@
-using System.Data.Entity;
 using GymAPI.Data;
 using GymAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GymAPI.Services.TrainingOrganizaton;
 
@@ -58,7 +58,7 @@ public class TrainingOrganizationService : ITrainingOrganizationService
         if (trainingOrg == null)
             return null;
 
-        dataContext.Entry(trainingOrg).CurrentValues.SetValues(item);
+        trainingOrg.Name = item.Name;
 
         await dataContext.SaveChangesAsync();
 

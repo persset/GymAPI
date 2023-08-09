@@ -7,7 +7,8 @@ public class ClientService : IClientService
 {
     private readonly DataContext dataContext;
 
-    public ClientService(DataContext dataContext) {
+    public ClientService(DataContext dataContext)
+    {
         this.dataContext = dataContext;
     }
 
@@ -24,7 +25,7 @@ public class ClientService : IClientService
     {
         var client = await dataContext.Clients.FindAsync(id);
 
-        if(client is null) return null;
+        if (client is null) return null;
 
         dataContext.Clients.Remove(client);
 
@@ -42,7 +43,7 @@ public class ClientService : IClientService
     {
         var client = await dataContext.Clients.FindAsync(id);
 
-        if(client is null) return null;
+        if (client is null) return null;
 
         return client;
     }
@@ -51,9 +52,13 @@ public class ClientService : IClientService
     {
         var client = await dataContext.Clients.FindAsync(id);
 
-        if(client is null) return null;
+        if (client is null) return null;
 
-        dataContext.Entry(client).CurrentValues.SetValues(item);
+        client.Name = item.Name;
+        client.Phone = item.Phone;
+        client.User = item.User;
+        client.Plan = item.Plan;
+        client.SubscriptionDeadline = item.SubscriptionDeadline;
 
         await dataContext.SaveChangesAsync();
 

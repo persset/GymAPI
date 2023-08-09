@@ -53,7 +53,7 @@ public class MuscleGroupService : IMuscleGroupService
 
         if (muscleGroup is null) return null;
 
-        dataContext.Entry(muscleGroup).CurrentValues.SetValues(item);
+        muscleGroup.Name = item.Name;
 
         await dataContext.SaveChangesAsync();
 

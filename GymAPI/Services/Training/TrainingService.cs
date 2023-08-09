@@ -57,7 +57,8 @@ public class TrainingService : ITrainingService
         if (training == null)
             return null;
 
-        dataContext.Entry(training).CurrentValues.SetValues(item);
+        training.Client = item.Client;
+        training.TrainingDesigner = item.TrainingDesigner;
 
         await dataContext.SaveChangesAsync();
 

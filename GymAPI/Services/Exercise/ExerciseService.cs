@@ -7,7 +7,8 @@ public class ExerciseSevice : IExerciseService
 {
     private readonly DataContext dataContext;
 
-    public ExerciseSevice(DataContext dataContext) {
+    public ExerciseSevice(DataContext dataContext)
+    {
         this.dataContext = dataContext;
     }
     public async Task<Models.Exercise> Create(Models.Exercise item)
@@ -23,7 +24,7 @@ public class ExerciseSevice : IExerciseService
     {
         var exercise = await dataContext.Exercises.FindAsync(id);
 
-        if(exercise is null) return null;
+        if (exercise is null) return null;
 
         dataContext.Exercises.Remove(exercise);
 
@@ -41,7 +42,7 @@ public class ExerciseSevice : IExerciseService
     {
         var exercise = await dataContext.Exercises.FindAsync(id);
 
-        if(exercise is null) return null;
+        if (exercise is null) return null;
 
         return exercise;
     }
@@ -50,9 +51,13 @@ public class ExerciseSevice : IExerciseService
     {
         var exercise = await dataContext.Exercises.FindAsync(id);
 
-        if(exercise is null) return null;
+        if (exercise is null) return null;
 
-        dataContext.Entry(exercise).CurrentValues.SetValues(item);
+        exercise.Name = item.Name;
+        exercise.Description = item.Description;
+        exercise.MuscleGroup = item.MuscleGroup;
+        exercise.ExampleImageURI = item.ExampleImageURI;
+        exercise.ExampleVideoURI = item.ExampleVideoURI;
 
         await dataContext.SaveChangesAsync();
 

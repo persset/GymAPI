@@ -7,26 +7,27 @@ public class FunctionaryService : IFunctionaryService
 {
     private readonly DataContext dataContext;
 
-    public FunctionaryService(DataContext dataContext) {
+    public FunctionaryService(DataContext dataContext)
+    {
         this.dataContext = dataContext;
     }
     public async Task<Models.Functionary> Create(Models.Functionary item)
     {
-         dataContext.Functionaries.Add(item);
+        dataContext.Functionaries.Add(item);
 
-         await dataContext.SaveChangesAsync();
+        await dataContext.SaveChangesAsync();
 
-         return item;
+        return item;
     }
 
     public async Task<Models.Functionary?> Delete(int id)
     {
         var functionary = await dataContext.Functionaries.FindAsync(id);
 
-        if(functionary is null) return null;
+        if (functionary is null) return null;
 
         dataContext.Functionaries.Remove(functionary);
-        
+
         await dataContext.SaveChangesAsync();
 
         return functionary;
@@ -41,7 +42,7 @@ public class FunctionaryService : IFunctionaryService
     {
         var functionary = await dataContext.Functionaries.FindAsync(id);
 
-        if(functionary is null) return null;
+        if (functionary is null) return null;
 
         return functionary;
     }
@@ -50,9 +51,12 @@ public class FunctionaryService : IFunctionaryService
     {
         var functionary = await dataContext.Functionaries.FindAsync(id);
 
-        if(functionary is null) return null;
+        if (functionary is null) return null;
 
-        dataContext.Entry(functionary).CurrentValues.SetValues(item);
+        functionary.Name = item.Name;
+        functionary.Phone = item.Phone;
+        functionary.User = item.User;
+
 
         await dataContext.SaveChangesAsync();
 

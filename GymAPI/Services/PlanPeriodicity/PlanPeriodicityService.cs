@@ -7,7 +7,8 @@ public class PlanPeriodicityService : IPlanPeriodicityService
 {
     private readonly DataContext dataContext;
 
-    public PlanPeriodicityService(DataContext dataContext) {
+    public PlanPeriodicityService(DataContext dataContext)
+    {
         this.dataContext = dataContext;
     }
     public async Task<Models.PlanPeriodicity> Create(Models.PlanPeriodicity item)
@@ -23,7 +24,7 @@ public class PlanPeriodicityService : IPlanPeriodicityService
     {
         var planPeriodicity = await dataContext.PlanPeriodicities.FindAsync(id);
 
-        if(planPeriodicity is null) return null;
+        if (planPeriodicity is null) return null;
 
         dataContext.PlanPeriodicities.Remove(planPeriodicity);
 
@@ -41,7 +42,7 @@ public class PlanPeriodicityService : IPlanPeriodicityService
     {
         var planPeriodicity = await dataContext.PlanPeriodicities.FindAsync(id);
 
-        if(planPeriodicity == null) return null;
+        if (planPeriodicity == null) return null;
 
         return planPeriodicity;
     }
@@ -50,9 +51,10 @@ public class PlanPeriodicityService : IPlanPeriodicityService
     {
         var planPeriodicity = await dataContext.PlanPeriodicities.FindAsync(id);
 
-        if(planPeriodicity == null) return null;
+        if (planPeriodicity == null) return null;
 
-        dataContext.Entry(planPeriodicity).CurrentValues.SetValues(item);
+        planPeriodicity.Period = item.Period;
+        planPeriodicity.PeriodDiscount = item.PeriodDiscount;
 
         await dataContext.SaveChangesAsync();
 
