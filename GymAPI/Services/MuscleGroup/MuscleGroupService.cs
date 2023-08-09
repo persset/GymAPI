@@ -3,11 +3,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GymAPI.Services.MuscleGroup;
 
-public class MuscleGroup : IMuscleGroup
+public class MuscleGroupService : IMuscleGroupService
 {
     private readonly DataContext dataContext;
 
-    public MuscleGroup(DataContext dataContext) {
+    public MuscleGroupService(DataContext dataContext)
+    {
         this.dataContext = dataContext;
     }
     public async Task<Models.MuscleGroup> Create(Models.MuscleGroup item)
@@ -23,7 +24,7 @@ public class MuscleGroup : IMuscleGroup
     {
         var muscleGroup = await dataContext.MuscleGroups.FindAsync(id);
 
-        if(muscleGroup is null) return null;
+        if (muscleGroup is null) return null;
 
         dataContext.MuscleGroups.Remove(muscleGroup);
 
@@ -41,7 +42,7 @@ public class MuscleGroup : IMuscleGroup
     {
         var muscleGroup = await dataContext.MuscleGroups.FindAsync(id);
 
-        if(muscleGroup is null) return null;
+        if (muscleGroup is null) return null;
 
         return muscleGroup;
     }
@@ -50,7 +51,7 @@ public class MuscleGroup : IMuscleGroup
     {
         var muscleGroup = await dataContext.MuscleGroups.FindAsync(id);
 
-        if(muscleGroup is null) return null;
+        if (muscleGroup is null) return null;
 
         dataContext.Entry(muscleGroup).CurrentValues.SetValues(item);
 
