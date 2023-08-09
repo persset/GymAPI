@@ -7,9 +7,11 @@ public class TrainingService : ITrainingService
 {
     private readonly DataContext dataContext;
 
-    public TrainingService(DataContext dataContext) {
+    public TrainingService(DataContext dataContext)
+    {
         this.dataContext = dataContext;
     }
+
     public async Task<Models.Training> Create(Models.Training item)
     {
         dataContext.Trainings.Add(item);
@@ -23,7 +25,8 @@ public class TrainingService : ITrainingService
     {
         var training = await dataContext.Trainings.FindAsync(id);
 
-        if(training == null)  return null;
+        if (training == null)
+            return null;
 
         dataContext.Trainings.Remove(training);
 
@@ -41,7 +44,8 @@ public class TrainingService : ITrainingService
     {
         var training = await dataContext.Trainings.FindAsync(id);
 
-        if(training == null) return null;
+        if (training == null)
+            return null;
 
         return training;
     }
@@ -50,7 +54,8 @@ public class TrainingService : ITrainingService
     {
         var training = await dataContext.Trainings.FindAsync(id);
 
-        if(training == null) return null;
+        if (training == null)
+            return null;
 
         dataContext.Entry(training).CurrentValues.SetValues(item);
 
